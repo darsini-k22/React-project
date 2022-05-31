@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.post("/vendorReg", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const { v_name } = req.body;
     const { v_email } = req.body;
@@ -38,6 +38,6 @@ app.post("/vendorReg", async (req, res) => {
   }
 });
 
-app.listen(5000, (req, res) => {
+app.listen(8000, (req, res) => {
   console.log("Server working!");
 });

@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
 
 export default function RegisterVendor() {
-  const [name, setName] = useState("");
-
-  /* const handleSubmit=async (e)=>{
+  /* const setValues=async (e)=>{
     e.preventDefault();
     try {
       const body={name};
@@ -19,7 +17,20 @@ export default function RegisterVendor() {
       
     }
   } */
-  const [email, setEmail] = useState("");
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    age: "",
+    phNum: "",
+    shopName: "",
+    shopAddr: "",
+    resiAddr: "",
+    passwd: "",
+    retypePw: "",
+  });
+  {
+    /*const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [phNum, setPhNum] = useState("");
   const [shopName, setShopName] = useState("");
@@ -27,26 +38,28 @@ export default function RegisterVendor() {
   const [resiAddr, setResiAddr] = useState("");
   const [passwd, setPasswd] = useState("");
   const [retypePw, setRetypePw] = useState("");
-  const [message, setMessage] = useState("");
+const [message, setMessage] = useState("");*/
+  }
 
-  const handleSubmit = async (e) => {
+  const setValues = async (e) => {
     e.preventDefault();
-    try {
-      const body = {
-        name,
-        email,
-        age,
-        phNum,
-        shopName,
-        shopAddr,
-        resiAddr,
-        passwd,
-      };
-      fetch("http://localhost:5000/vendorReg");
-    } catch (err) {
-      console.error(err.message);
-    }
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+    console.log(inputs);
   };
+
+  const handleSubmitForm = (event) => {
+    alert(inputs);
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/vendorReg")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -69,12 +82,7 @@ export default function RegisterVendor() {
             </a>
           </p>
         </div>
-        <form
-          className="mt-8 space-y-6"
-          action="http://localhost:5000/vendorReg"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
+        <form className="mt-8 space-y-6" action="#" onSubmit={handleSubmitForm}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -84,14 +92,12 @@ export default function RegisterVendor() {
               <input
                 id="name"
                 name="name"
-                value={name}
+                value={inputs.name}
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Name"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
 
@@ -102,12 +108,10 @@ export default function RegisterVendor() {
               <input
                 id="email-address"
                 name="email"
-                value={email}
+                value={inputs.email}
                 type="email"
                 autoComplete="email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={setValues}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
@@ -121,10 +125,8 @@ export default function RegisterVendor() {
                 id="age"
                 name="age"
                 type="number"
-                value={age}
-                onChange={(e) => {
-                  setAge(e.target.value);
-                }}
+                value={inputs.age}
+                onChange={setValues}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Age"
@@ -136,16 +138,14 @@ export default function RegisterVendor() {
               </label>
               <input
                 id="ph-num"
-                name="ph-num"
-                value={phNum}
+                name="phNum"
+                value={inputs.phNum}
                 type="tel"
                 pattern="[0-9]{10}"
                 required
                 className="appearance-none relative rounded-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Phone number (eg: 1234567890)"
-                onChange={(e) => {
-                  setPhNum(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
             <div>
@@ -154,15 +154,13 @@ export default function RegisterVendor() {
               </label>
               <input
                 id="shop-name"
-                name="shop-name"
-                value={shopName}
+                name="shopName"
+                value={inputs.shopName}
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Shop Name"
-                onChange={(e) => {
-                  setShopName(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
 
@@ -186,16 +184,14 @@ export default function RegisterVendor() {
                 Shop Address
               </label>
               <input
-                id="shop-address"
-                value={shopAddr}
-                name="shop-address"
+                id="shopAddr"
+                value={inputs.shopAddr}
+                name="shopAddr"
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Shop address"
-                onChange={(e) => {
-                  setShopAddr(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
             <div>
@@ -203,16 +199,14 @@ export default function RegisterVendor() {
                 Residential Address
               </label>
               <input
-                id="residential-address"
-                value={resiAddr}
-                name="residential-address"
+                id="resiAddr"
+                value={inputs.resiAddr}
+                name="resiAddr"
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Residential Address"
-                onChange={(e) => {
-                  setResiAddr(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
             <div>
@@ -221,16 +215,14 @@ export default function RegisterVendor() {
               </label>
               <input
                 id="password"
-                name="password"
-                value={passwd}
+                name="passwd"
+                value={inputs.passwd}
                 type="password"
                 autoComplete="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
-                onChange={(e) => {
-                  setPasswd(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
             <div>
@@ -238,17 +230,15 @@ export default function RegisterVendor() {
                 Retype Password
               </label>
               <input
-                id="Retype-Password"
-                name="Retyep-password"
-                value={retypePw}
+                id="RetypePw"
+                name="retypePw"
+                value={inputs.retypePw}
                 type="password"
                 autoComplete="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Retype Password"
-                onChange={(e) => {
-                  setRetypePw(e.target.value);
-                }}
+                onChange={setValues}
               />
             </div>
           </div>
@@ -262,7 +252,7 @@ export default function RegisterVendor() {
               Sign up
             </button>
           </div>
-          <p>{message}</p>
+          <p>hello</p>
         </form>
       </div>
     </div>
