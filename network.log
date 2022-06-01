@@ -1,0 +1,115 @@
+
+Network connection monitoring started at : 2022-06-01 08:26:49 Sending ping request in 2 seconds
+Network connection unavailable at:2022-06-01 08:26:59
+Network Connectivity Restored at: 2022-06-01 08:27:06
+Network Connection was Unavailable for 0:00:07
+Network connection unavailable at:2022-06-01 08:28:36
+Network Connectivity Restored at: 2022-06-01 08:28:39
+Network Connection was Unavailable for 0:00:03
+
+Network connection monitoring started at : 2022-06-01 08:30:15 Sending ping request in 2 seconds
+Network connection unavailable at:2022-06-01 08:30:28
+Network Connectivity Restored at: 2022-06-01 08:30:30
+Network Connection was Unavailable for 0:00:02
+
+DESKTOP-L66OKUC
+10.1.82.74
+
+DESKTOP-L66OKUC
+10.1.82.74
+
+Your device: None
+Visible networks:  
+Interface name : Wi-Fi 
+There are 1 networks currently visible. 
+
+SSID 1 : AMCS
+    Network type            : Infrastructure
+    Authentication          : Open
+    Encryption              : None 
+
+
+Currently connected to: ['SSID 1 : AMCS']
+Network connection monitoring started at : 2022-06-01 13:46:28 Sending ping request in 2 seconds
+Network connection unavailable at:2022-06-01 13:46:31
+
+DESKTOP-L66OKUC
+10.1.82.74
+
+DESKTOP-L66OKUC
+10.1.82.74
+
+Your device: None
+Visible networks:  
+Interface name : Wi-Fi 
+There are 13 networks currently visible. 
+
+SSID 1 : DESKTOP-K5A29S9 8284
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 2 : GILFOYLE
+    Network type            : Infrastructure
+    Authentication          : Open
+    Encryption              : None 
+
+SSID 3 : Raksha K R
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 4 : OnePlus Nord
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 5 : CSD Redmi Note 10 Pro Max
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 6 : Kanishka's Galaxy M51
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 7 : realme 6
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 8 : AMCS
+    Network type            : Infrastructure
+    Authentication          : Open
+    Encryption              : None 
+
+SSID 9 : PSG-WiFi
+    Network type            : Infrastructure
+    Authentication          : WPA2-Enterprise
+    Encryption              : CCMP 
+
+SSID 10 : DIRECT-CRMRRHUEZZLERG17mslL
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 11 : AMCS
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 12 : CSL
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+SSID 13 : DIRECT-38-HP 1200 Neverstop
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+
+
+Currently connected to: ['SSID 1 : DESKTOP-K5A29S9 8284']
+Network connection monitoring started at : 2022-06-01 13:46:44 Sending ping request in 2 seconds
+Network connection unavailable at:2022-06-01 13:46:47
