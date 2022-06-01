@@ -1,11 +1,12 @@
-import './App.css';
-import RegisterVendor from './components/RegisterVendor';
-import Login from './pages/Login';
+import "./App.css";
+
+import RegisterVendor from "./components/RegisterVendor";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div className="App">
-      <RegisterVendor/>
+      <RegisterVendor />
     </div>
   );
 }
