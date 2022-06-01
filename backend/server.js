@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const { rows } = require("pg/lib/defaults");
 
 //middle ware
 app.use(cors());
@@ -24,8 +25,25 @@ app.post("/vendorReg", async (req, res) => {
       [name, email, age, shopName, shopAddr, resiAddr, passwd, phNum]
     );
     res.json(reg.rows[0]);
+    console.log(res.json(rows[0]).status);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.message)
+  }
+});
+
+app.get("/login", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const { passwd } = req.body;
+
+    console.log(req.body);
+    const reg = await pool.query(
+      "SELECT v_email,v_passwd FROM vendorReg WHERE v_email=($1) AND v_passwd=($2)",
+      [email, passwd]
+    );
+    res.json(reg.rows[0]);
+  } catch (error) {
+    console.error(error.message);
   }
 });
 

@@ -1,7 +1,38 @@
 import React from "react";
+import { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 export default function LoginBox() {
+  const [inputs, setInputs] = useState({
+    email: "",
+    passwd: "",
+  });
+
+  const setValues = async (e) => {
+    e.preventDefault();
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    console.log(inputs);
+    fetch("http://localhost:5000/login", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -24,22 +55,9 @@ export default function LoginBox() {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleSubmitForm}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                User Name
-              </label>
-              <input
-                id="user-name"
-                name="userName"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="User Name"
-              />
-            </div>
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -49,23 +67,24 @@ export default function LoginBox() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                onChange={setValues}
                 required
-                className="appearance-none relative rounded-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative rounded-none rounded-t-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
-            
+
             <div>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
               <input
-              
                 id="password"
-                name="password"
-                type="password"
+                name="passwd"
+                type="passwd"
                 autoComplete="current-password"
                 required
+                onChange={setValues}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />

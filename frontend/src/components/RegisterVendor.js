@@ -14,18 +14,14 @@ export default function RegisterVendor() {
     retypePw: "",
   });
 
-  const [msg, setMsg] = useState();
+  const [message, setMessage] = useState("");
   const setValues = async (e) => {
     e.preventDefault();
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-    
   };
-
-  
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-  
 
     fetch("http://localhost:5000/vendorReg", {
       method: "POST",
@@ -35,13 +31,25 @@ export default function RegisterVendor() {
       body: JSON.stringify(inputs),
     })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
       })
-      .then(data => {
-        console.log('Success:', data);
+      .then((data) => {
+        console.log("Success:", data);
+        setMessage({ message: "Successfully registered as vendor!" });
       })
       .catch((error) => {
-        console.error('Error:', error);
+        error
+          .json()
+          .then((data) => {
+            console.error("Error", data);
+            setMessage({ message: "Error while registering" });
+          })
+          .catch((err) => {
+            console.log("json error", err);
+          });
       });
   };
 
@@ -231,14 +239,30 @@ export default function RegisterVendor() {
           <div>
             <button
               type="submit"
-              //onClick={()=>window.location.reload(false)}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
               Sign up
             </button>
+            {message && (
+              <div
+                class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert"
+              >
+                <span class="font-medium">Success alert!</span> Change a few
+                things up and try submitting again.
+              </div>
+            )}
+            {message === false && (
+              <div
+                class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                role="alert"
+              >
+                <span class="font-medium">Danger alert!</span> Change a few
+                things up and try submitting again.
+              </div>
+            )}
           </div>
-          
         </form>
       </div>
     </div>

@@ -14,3 +14,6 @@ create table vendorReg(
 alter table vendorReg
 add column v_ph_num NUMERIC;
 
+
+select email,password from vendorReg;
+
