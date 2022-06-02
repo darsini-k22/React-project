@@ -15,10 +15,22 @@ export default function RegisterVendor() {
   });
 
   const [message, setMessage] = useState("");
+ 
   const setValues = async (e) => {
     e.preventDefault();
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
+
+  const validator=()=>{
+    if(inputs.passwd===inputs.retypePw)
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    }
+  }
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -51,6 +63,18 @@ export default function RegisterVendor() {
             console.log("json error", err);
           });
       });
+
+    setInputs({
+      name: "",
+      email: "",
+      age: "",
+      phNum: "",
+      shopName: "",
+      shopAddr: "",
+      resiAddr: "",
+      passwd: "",
+      retypePw: "",
+    });
   };
 
   return (
@@ -239,30 +263,31 @@ export default function RegisterVendor() {
           <div>
             <button
               type="submit"
+              //onClick={}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
               Sign up
             </button>
-            {message && (
-              <div
-                class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-                role="alert"
-              >
-                <span class="font-medium">Success alert!</span> Change a few
-                things up and try submitting again.
-              </div>
-            )}
-            {message === false && (
-              <div
-                class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
-                role="alert"
-              >
-                <span class="font-medium">Danger alert!</span> Change a few
-                things up and try submitting again.
-              </div>
-            )}
           </div>
+          {message && (
+            <div
+              class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert"
+            >
+              <span class="font-medium">Success alert!</span> Change a few
+              things up and try submitting again.
+            </div>
+          )}
+          {message === false && (
+            <div
+              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+              role="alert"
+            >
+              <span class="font-medium">Danger alert!</span> Change a few things
+              up and try submitting again.
+            </div>
+          )}
         </form>
       </div>
     </div>
