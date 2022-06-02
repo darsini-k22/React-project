@@ -17,3 +17,6 @@ add column v_ph_num NUMERIC;
 
 select email,password from vendorReg;
 
+ALTER TABLE vendorReg ADD COLUMN created_at TIMESTAMP;
+ALTER TABLE vendorReg ALTER COLUMN created_at SET DEFAULT now();
+
